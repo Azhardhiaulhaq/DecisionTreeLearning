@@ -51,11 +51,7 @@ def read_file(namefile) :
         'name' : name,
         'index' : index
     }
-    
-    # print(data)
-    # print("ASDASDASDASD")
-    # print(Counter(data['example']['outlook']))
-    # node(header,row)
+ 
     return data,tennisData
 
 def fixMissingValue(tennisData):
@@ -78,18 +74,10 @@ def fixMissingValue(tennisData):
     return tennisData
 
 def ID3(examples,target,attributes,tree_parent,tree,usedLabels):
-    # Misal yang diambil
-    
-    # print("#################################")
-    # print(len(examples))
     dataCount=Counter(examples['play'])
-    # print(dataCount)
-    # print(len(examples.loc[examples["outlook"]=="sunny"]))
-    # print(examples)
     for targetValue in target:
         if(dataCount[targetValue]==len(examples)):
             tree.create_node(targetValue,parent=tree_parent)
-            # print("Masuk Daun")
             return
 
     if(len(attributes)==0):     
@@ -142,21 +130,6 @@ def header_labelling(header):
     
     return index,name
 
-# def entropy(data, attribute):
-#     instance = len(data['example'])
-#     count_entropy = 0
-#     count_target = []
-#     for i in range (len(data['targetvalue'])):
-#       if(i != 0):
-#           count_target.append([data['targetvalue'][i], 0])
-#     for a in data['example']:
-#       for b in range(len(count_target)):
-#           if(count_target[b][0]==a[1][len(a)-1] and a[1][attribute]):
-#               count_target[b][1] += 1
-#     for x in range (len(count_target)):
-#       p = count_target[x][1]/instance
-#       count_entropy += -(p*math.log(p,2))
-#     return count_entropy
 
 def entropy(arrentropy):
     count_entropy = 0
@@ -190,37 +163,7 @@ def information_gain(example,att,target):
 
     return (entropyAll - entropyLabel)
     
-        
-
-    
-    #Hitung Entropy Labels    
-    # #total entropy dataset
-    # total_entropy = entropy(data, target)
-    # #menghitung instance setiap split attribute
-    # count_split_attribute = []
-    # for i in range(len(data['node'])):
-    #     temp = []
-    #     for j in data['node'][i]:
-    #         temp.append([data['node'][i][j], 0])
-    #     count_split_attribute.append([temp])
-    # for x in range(len(data['example'][0][1])-1):
-    #     for y in range(len(data['example'])):
-    #         for z in range(len(count_split_attribute[x])):
-    #             if(data['example'][y][x] == count_split_attribute[x][z][0]):
-    #                 count_split_attribute[x][z][0] += 1
-    # #menghitung ig
-    # ig = []
-    # for x in range(len(data['example'][0][1])-1):
-    #     attribute_instance = 0
-    #     #total instance setiap attribute
-    #     for y in range(count_split_attribute[x]):
-    #         attribute_instance += count_split_attribute[x][y][1]
-    #     #entropy setiap attribute value
-    #     for y in range(count_split_attribute[x]):
-    #         p = count_split_attribute[x][z][1]/attribute_instance
-    #         temp_entropy = [data['header'][x],(p*entropy(data,data['header'][x])
-
- 
+         
 if __name__ == '__main__':
     data,tennisData=read_file("play-tennis2.csv")
     tree=Tree()
